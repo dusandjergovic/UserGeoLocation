@@ -1,15 +1,41 @@
 $(document).ready(function() {
+
+    const x = $('<p>');
+
+        
     
-    $('#btn').click(function() {
-        $.ajax({
-            url: 'https://ip-api.com/json',
-            success: function(response) {
-                console.log(response);
-                $('#btn').hide();
-                let para = $('<p>');
-                para.text(`Vasa zaemlja je ${response.country}, a trenutno se nalazite u gradu: ${response.city}`)
-                $('div').append(para);
-            }
-        })
-    })
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+            $('div').append(x);
+        }
+    }
+
+    function showPosition(position) {
+        function getCityName(latitude, longitude) {
+            $.ajax({
+                url: `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
+                success: function(response) {
+                    if (response && response.address && response.address.city) {
+                                let city = response.address.city;
+                                x.text('City: ' + city);
+                                $('div').append(x);
+                            } else {
+                                x.text('City not found.');
+                                $('div').append(x);
+                            }
+                }
+            })
+        }
+        getCityName(position.coords.latitude, position.coords.longitude);
+    }
+    
+        $('#btn').click(function() {
+            $(this).hide()
+            getLocation();
+        });
+
 })
