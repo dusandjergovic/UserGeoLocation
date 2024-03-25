@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        div {
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: lightgrey;
+        }
+        #btn {
+            padding: 1rem;
+            text-transform: uppercase;
+            border-radius: .5rem;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+        #btn:hover {
+            border: 1px solid lightgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <button id="btn">Prikazi moju lokaciju</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
