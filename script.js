@@ -2,7 +2,7 @@ $(document).ready(function() {
     
     $('#btn').click(function() {
         $.ajax({
-            url: 'http://ip-api.com/json',
+            url: 'https://ip-api.com/json',
             success: function(response) {
                 console.log(response);
                 $('#btn').hide();
