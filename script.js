@@ -2,9 +2,6 @@ $(document).ready(function() {
 
     const x = $('<p>');
 
-        
-    
-
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -19,14 +16,9 @@ $(document).ready(function() {
             $.ajax({
                 url: `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
                 success: function(response) {
-                    if (response && response.address && response.address.city) {
-                                let city = response.address.city;
-                                x.text('City: ' + city);
-                                $('div').append(x);
-                            } else {
-                                x.text('City not found.');
-                                $('div').append(x);
-                            }
+                    console.log(response.address);
+                    x.text(`You'r city is:${response.address.city}, and you'r country is ${response.address.country}`)
+                    $('div').append(x);
                 }
             })
         }
